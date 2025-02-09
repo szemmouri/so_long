@@ -6,7 +6,7 @@
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:18:39 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/06 18:27:46 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/09 13:02:38 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_put_move(t_game *game)
 	display_moves(game);
 }
 
-static void	cllect_coin(t_game *game)
+static void	collect_coin(t_game *game)
 {
 	game->collect--;
 	game->map[game->y_p / 50][game->x_p / 50] = EMPTY;
@@ -41,7 +41,7 @@ static void	open_door(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img_floor, x * 50, y
 		* 50);
 	mlx_destroy_image(game->mlx, game->img_exit);
-	game->img_exit = mlx_png_file_to_image(game->mlx, "textures/door_o.png",
+	game->img_exit = mlx_xpm_file_to_image(game->mlx, "textures/door_o.xpm",
 			&img_w, &img_h);
 	mlx_put_image_to_window(game->mlx, game->win, game->img_exit, x * 50, y
 		* 50);
@@ -89,7 +89,7 @@ void	move_player(t_game *game, int direction)
 	game->y_p = next_y;
 	ft_put_move(game);
 	if (game->map[game->y_p / 50][game->x_p / 50] == COLLECTIBLE)
-		cllect_coin(game);
+		collect_coin(game);
 	mlx_put_image_to_window(game->mlx, game->win, player_img, game->x_p,
 		game->y_p);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 15:36:28 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/06 18:19:57 by szemmour         ###   ########.fr       */
+/*   Created: 2025/02/09 13:59:10 by szemmour          #+#    #+#             */
+/*   Updated: 2025/02/09 14:31:18 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	get_random_number(void)
 	static int	direction = 0;
 
 	counter++;
-	if (counter >= 5)
+	if (counter > 5)
 	{
 		direction = (direction + 1) % 4;
 		counter = 0;

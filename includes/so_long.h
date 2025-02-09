@@ -6,7 +6,7 @@
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:30:22 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/06 18:27:11 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/09 12:24:08 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "../lib/get_next_line/get_next_line.h"
 # include "../lib/libft/libft.h"
-# include "../lib/mlx/mlx.h"
 # include <fcntl.h>
+# include <mlx.h>
 
 // move diriction
 # define MOVE_UP 0
@@ -58,6 +58,7 @@ typedef struct s_enemy
 {
 	int				x_e;
 	int				y_e;
+	int				enemy_count;
 	void			*img_enemy_l;
 	void			*img_enemy_r;
 	int				move_dir;
@@ -107,6 +108,7 @@ void				move_player(t_game *game, int direction);
 void				get_door_position(char **map, int *x, int *y);
 int					get_map_height(char **map);
 int					check_line(char *line);
+void				load_images(t_game *game, int *img_w, int *img_h);
 
 // bonus
 int					animation(t_game *game);

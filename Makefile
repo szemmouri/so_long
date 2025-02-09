@@ -3,14 +3,11 @@ NC=\033[0m
 
 NAME     = so_long
 
-MLXLIB   = libmlx.dylib
 CC       = cc
 CFLAGS   = -Wall -Wextra -Werror
-MLXFLAGS = -framework OpenGL -framework AppKit $(MLXLIB)
-
+LMLX = -lmlx -framework OpenGL -framework AppKit
 
 SRCSDIR      = ./srcs/
-MLXLIBDIR    = ./lib/mlx/
 GNLDIR       = ./lib/get_next_line/
 LIBFTDIR     = ./lib/libft/
 
@@ -34,8 +31,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFTDIR)
-	@make -C $(MLXLIBDIR)
-	@$(CC) $(OBJS) $(MLXFLAGS) $(LIBFT) -o $(NAME)
+	@$(CC) $(OBJS) $(LMLX) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)So_long compiled$(NC)"
 
 %.o: %.c includes/so_long.h
@@ -48,7 +44,6 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIBFTDIR)
-	@make clean -C $(MLXLIBDIR)
 	@rm -f $(NAME)
 	@echo "$(GREEN)All cleaned$(NC)"
 

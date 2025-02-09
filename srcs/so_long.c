@@ -6,7 +6,7 @@
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:30:59 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/06 18:38:04 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/09 12:24:19 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,7 @@ static void	init_vars(t_game *game)
 	game->movement = 0;
 	game->win_w = ft_strlen(game->map[0]);
 	game->win_h = get_map_height(game->map);
-	game->img_floor = mlx_png_file_to_image(game->mlx, "textures/floor.png",
-			&img_w, &img_h);
-	game->img_wall = mlx_png_file_to_image(game->mlx, "textures/wall.png",
-			&img_w, &img_h);
-	game->img_collect = mlx_png_file_to_image(game->mlx, "textures/coin.png",
-			&img_w, &img_h);
-	game->img_exit = mlx_png_file_to_image(game->mlx, "textures/door_c.png",
-			&img_w, &img_h);
-	game->img_player_r = mlx_png_file_to_image(game->mlx,
-			"textures/player_r.png", &img_w, &img_h);
-	game->img_player_l = mlx_png_file_to_image(game->mlx,
-			"textures/player_l.png", &img_w, &img_h);
-	game->e_data.img_enemy_l = mlx_png_file_to_image(game->mlx,
-			"textures/enemy_l.png", &img_w, &img_h);
-	game->e_data.img_enemy_r = mlx_png_file_to_image(game->mlx,
-			"textures/enemy_r.png", &img_w, &img_h);
+	load_images(game, &img_w, &img_h);
 }
 
 static void	put_image_to_map(char c, int x, int y, t_game *game)
@@ -76,6 +61,7 @@ static void	put_image_to_map(char c, int x, int y, t_game *game)
 	{
 		game->e_data.y_e = y;
 		game->e_data.x_e = x;
+		game->e_data.enemy_count = 1;
 		mlx_put_image_to_window(game->mlx, game->win, game->e_data.img_enemy_l,
 			x, y);
 	}
@@ -127,7 +113,8 @@ int	main(int argc, char **argv)
 		mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
 		mlx_hook(game.win, 17, (1L << 0), close_window, &game);
 		mlx_string_put(game.mlx, game.win, 12, 20, 0x000000, "Move: 0");
-		mlx_loop_hook(game.mlx, animation, &game);
+		if (game.e_data.enemy_count == 1)
+			mlx_loop_hook(game.mlx, animation, &game);
 		mlx_loop(game.mlx);
 	}
 }

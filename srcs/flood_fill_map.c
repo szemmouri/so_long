@@ -6,7 +6,7 @@
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:25:05 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/06 18:27:11 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/09 13:30:49 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,13 @@ static int	flood_fill_map(char **map, int x, int y, t_map_data *map_d)
 	m_height = get_map_height(map);
 	if (x < 0 || y < 0 || x >= m_width || y >= m_height)
 		return (0);
-	if (map[y][x] == WALL || map[y][x] == 'v')
+	if (map[y][x] == EXIT)
+		map_d->exit_found = 1;
+	if (map[y][x] == WALL || map[y][x] == 'v' || map[y][x] == EXIT
+		|| map[y][x] == ENEMY)
 		return (0);
 	if (map[y][x] == COLLECTIBLE)
 		map_d->coins_found++;
-	if (map[y][x] == EXIT)
-		map_d->exit_found = 1;
 	map[y][x] = 'v';
 	flood_fill_map(map, x + 1, y, map_d);
 	flood_fill_map(map, x - 1, y, map_d);
