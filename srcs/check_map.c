@@ -6,7 +6,7 @@
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:54:54 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/06 18:27:11 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:25:24 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	is_map_composed(char **map)
 		put_erorr("ERROR: Map is not composed", map);
 	while (height)
 	{
-		if (map[height][0] != WALL
-			|| map[height][ft_strlen(map[0]) - 1] != WALL)
+		if (map[height][0] != WALL || map[height][ft_strlen(map[0])
+			- 1] != WALL)
 			put_erorr("ERROR: Map is not composed", map);
 		height--;
 	}
@@ -105,4 +105,6 @@ void	check_map(char **map)
 	check_elements(map, &map_d);
 	if (!check_map_solvable(map, &map_d))
 		put_erorr("ERROR: Invalid map can't finish the Game!!", map);
+	if (get_map_height(map) > 163 || ft_strlen(map[0]) > 163)
+		put_erorr("ERROR: Invalid map So Loong :)", map);
 }

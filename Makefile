@@ -24,14 +24,14 @@ SRCS    =   $(GNLDIR)get_next_line_utils.c    \
 			$(SRCSDIR)flood_fill_map.c \
 			$(SRCSDIR)animition.c
 
-OBJS    = $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFTDIR)
-	@$(CC) $(OBJS) $(LMLX) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LMLX) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)So_long compiled$(NC)"
 
 %.o: %.c includes/so_long.h
