@@ -89,3 +89,23 @@ To test the game and validate its functionality, follow these steps:
 7. Test various edge cases, such as reaching invalid tiles or unexpected input, to ensure the game handles them gracefully
 
 During testing, monitor the game's performance, responsiveness, and adherence to the specified game rules. Make adjustments and improvements as necessary to enhance the gameplay experience.
+
+
+## Resources
+
+https://harm-smits.github.io/42docs/libs/minilibx
+<br/>
+https://42-cursus.gitbook.io/guide/minilibx 
+<br/>
+https://42-cursus.gitbook.io/guide/rank-02/so_long 
+<br/> 
+https://medium.com/%40simonzerisenay/exploring-so-long-game-a-dive-into-2d-game-development-f889f498e416 <br/>
+https://medium.com/%40digitalpoolng/42-so-long-and-thanks-for-all-the-fish-building-your-first-2d-game-in-c-ccd24034bc8b <br/>
+https://github.com/simon-zerisenay/42_So_Long <br/>
+https://reactive.so/post/42-a-comprehensive-guide-to-so_long/  <br/>
+https://thegimptutorials.com/how-to-make-pixel-art <br/>
+https://opengameart.org/ <br/>
+https://jamiecross.itch.io/8-bit-dungeon-tilesetsprites <br/>
+
+## Tester
+https://github.com/gemartin99/So_long-Tester
