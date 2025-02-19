@@ -101,7 +101,6 @@ https://42-cursus.gitbook.io/guide/rank-02/so_long
 <br/> 
 https://medium.com/%40simonzerisenay/exploring-so-long-game-a-dive-into-2d-game-development-f889f498e416 <br/>
 https://medium.com/%40digitalpoolng/42-so-long-and-thanks-for-all-the-fish-building-your-first-2d-game-in-c-ccd24034bc8b <br/>
-https://github.com/simon-zerisenay/42_So_Long <br/>
 https://reactive.so/post/42-a-comprehensive-guide-to-so_long/  <br/>
 https://thegimptutorials.com/how-to-make-pixel-art <br/>
 https://opengameart.org/ <br/>
