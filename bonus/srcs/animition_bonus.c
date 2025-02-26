@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animition.c                                        :+:      :+:    :+:   */
+/*   animition_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:59:10 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/09 14:31:18 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:35:34 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-
-void	display_moves(t_game *game)
-{
-	char	*moves;
-	char	*tmp;
-
-	tmp = ft_itoa(game->movement);
-	moves = ft_strjoin("Move: ", tmp);
-	free(tmp);
-	mlx_put_image_to_window(game->mlx, game->win, game->img_wall, 50, 0);
-	mlx_put_image_to_window(game->mlx, game->win, game->img_wall, 50 * 2, 0);
-	mlx_string_put(game->mlx, game->win, 12, 20, 0x000000, moves);
-	free(moves);
-}
+#include "../includes/so_long_bonus.h"
 
 static int	get_random_number(void)
 {
@@ -61,6 +47,26 @@ static void	*get_dir_move(t_game *game, int direction, int *next_x, int *next_y)
 	return (game->e_data.img_enemy_l);
 }
 
+void	rotate_enemy(t_game *game)
+{
+	static int	turn = 0;
+
+	mlx_put_image_to_window(game->mlx, game->win, game->img_floor,
+		game->e_data.x_e, game->e_data.y_e);
+	if (turn == 0)
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->e_data.img_enemy_r,
+			game->e_data.x_e, game->e_data.y_e);
+		turn = 1;
+	}
+	else
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->e_data.img_enemy_l,
+			game->e_data.x_e, game->e_data.y_e);
+		turn = 0;
+	}
+}
+
 static void	move_enemy(t_game *game, int direction)
 {
 	int		next_x;
@@ -79,6 +85,8 @@ static void	move_enemy(t_game *game, int direction)
 		mlx_put_image_to_window(game->mlx, game->win, enemy_img,
 			game->e_data.x_e, game->e_data.y_e);
 	}
+	else
+		rotate_enemy(game);
 }
 
 int	animation(t_game *game)

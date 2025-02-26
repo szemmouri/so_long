@@ -21,13 +21,14 @@ SRCS    =   $(GNLDIR)get_next_line_utils.c    \
 			$(SRCSDIR)moves.c \
 			$(SRCSDIR)free_exit.c \
 			$(SRCSDIR)utils.c \
-			$(SRCSDIR)flood_fill_map.c \
-			$(SRCSDIR)animition.c
+			$(SRCSDIR)flood_fill_map.c 
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
+bonus:
+	@make -C bonus
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFTDIR)
@@ -38,13 +39,17 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	@make clean -C bonus
 	@make clean -C $(LIBFTDIR)
 	@rm -f $(OBJS)
 	@echo "$(GREEN)Object files cleaned$(NC)"
 
 fclean: clean
+	@make fclean -C bonus
 	@make fclean -C $(LIBFTDIR)
 	@rm -f $(NAME)
 	@echo "$(GREEN)All cleaned$(NC)"
 
 re: fclean all
+
+.PHONY: clean bonus

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:30:59 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/26 11:51:54 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:57:52 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 static int	key_hook(int keycode, t_game *game)
 {
@@ -56,6 +56,14 @@ static void	put_image_to_map(char c, int x, int y, t_game *game)
 		game->y_p = y;
 		game->x_p = x;
 		mlx_put_image_to_window(game->mlx, game->win, game->img_player_r, x, y);
+	}
+	else if (c == ENEMY)
+	{
+		game->e_data.y_e = y;
+		game->e_data.x_e = x;
+		game->e_data.enemy_count = 1;
+		mlx_put_image_to_window(game->mlx, game->win, game->e_data.img_enemy_l,
+			x, y);
 	}
 }
 
@@ -104,6 +112,8 @@ int	main(int argc, char **argv)
 		render_map(&game);
 		mlx_hook(game.win, 2, 0, key_hook, &game);
 		mlx_hook(game.win, 17, 0, close_window, &game);
+		mlx_string_put(game.mlx, game.win, 12, 20, 0x000000, "Move: 0");
+		mlx_loop_hook(game.mlx, animation, &game);
 		mlx_loop(game.mlx);
 	}
 }

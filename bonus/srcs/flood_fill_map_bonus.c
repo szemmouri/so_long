@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill_map.c                                   :+:      :+:    :+:   */
+/*   flood_fill_map_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:25:05 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/24 13:38:00 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:50:08 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 static char	**copy_map(char **map)
 {
@@ -71,11 +71,11 @@ static int	flood_fill_map(char **map, int x, int y, t_map_data *map_d)
 	m_height = get_map_height(map);
 	if (x < 0 || y < 0 || x >= m_width || y >= m_height)
 		return (0);
-	if (map[y][x] == WALL || map[y][x] == 'v' || map[y][x] == EXIT)
-	{
+	if (map[y][x] == EXIT)
 		map_d->exit_found = 1;
+	if (map[y][x] == WALL || map[y][x] == 'v' || map[y][x] == EXIT
+		|| map[y][x] == ENEMY)
 		return (0);
-	}
 	if (map[y][x] == COLLECTIBLE)
 		map_d->coins_found++;
 	map[y][x] = 'v';

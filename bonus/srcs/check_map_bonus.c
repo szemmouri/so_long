@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:54:54 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/24 13:36:38 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:00:32 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 static char	*ft_err_message(t_map_data map_d)
 {
 	if (map_d.coins_found == 0)
-		return ("ERROR: At least one collectible must be present in the map.");
+		return ("ERROR: At least one collectible must be present in the map!");
 	if (map_d.exit_found == 0)
-		return ("ERROR: At least one exit must be present in the map.");
+		return ("ERROR: At least one exit must be present in the map!");
 	if (map_d.exit_found > 1)
 		return ("ERROR: There must be only one exit in the map!");
 	if (map_d.player == 0)
-		return ("ERROR: At least one player must be present in the map.");
+		return ("ERROR: At least one player must be present in the map!");
 	if (map_d.player > 1)
 		return ("ERROR: There must be only one player in the map!");
+	if (map_d.enemy > 1)
+		return ("ERROR: There must be only one Enemy in the map!");
+	if (map_d.enemy < 1)
+		return ("ERROR: At least one Enemy must be present in the map!");
 	return (NULL);
 }
 
@@ -40,6 +44,8 @@ void	check_elements(char **map, t_map_data *map_d)
 				map_d->coins_found++;
 			else if (map[map_d->t_y][map_d->t_x] == EXIT)
 				map_d->exit_found++;
+			else if (map[map_d->t_y][map_d->t_x] == ENEMY)
+				map_d->enemy++;
 			else if (map[map_d->t_y][map_d->t_x] != WALL
 				&& map[map_d->t_y][map_d->t_x] != EMPTY)
 				put_erorr("ERROR: Unknown element", map);
@@ -48,7 +54,8 @@ void	check_elements(char **map, t_map_data *map_d)
 		map_d->t_y++;
 	}
 	if (map_d->coins_found == 0 || map_d->player == 0 || map_d->exit_found == 0
-		|| map_d->exit_found > 1 || map_d->player > 1)
+		|| map_d->exit_found > 1 || map_d->player > 1 || map_d->enemy > 1
+		|| map_d->enemy < 1)
 		put_erorr(ft_err_message(*map_d), map);
 }
 
@@ -94,6 +101,7 @@ void	check_map(char **map)
 	map_d.coins_found = 0;
 	map_d.player = 0;
 	map_d.exit_found = 0;
+	map_d.enemy = 0;
 	map_d.t_y = 0;
 	check_is_rectangular(map);
 	is_map_composed(map);

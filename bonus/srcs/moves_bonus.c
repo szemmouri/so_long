@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   moves_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:18:39 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/24 13:34:40 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:59:26 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-
-static void	ft_put_move(t_game *game)
-{
-	ft_putstr_fd("Move: ", 1);
-	ft_putnbr_fd(++game->movement, 1);
-	ft_putchar_fd('\n', 1);
-}
+#include "../includes/so_long_bonus.h"
 
 static void	collect_coin(t_game *game)
 {
@@ -86,7 +79,7 @@ void	move_player(t_game *game, int direction)
 		ft_exit("\033[1;32mCongrats You Win!\033[0m", game);
 	game->x_p = next_x;
 	game->y_p = next_y;
-	ft_put_move(game);
+	display_moves(game);
 	if (game->map[game->y_p / 50][game->x_p / 50] == COLLECTIBLE)
 		collect_coin(game);
 	mlx_put_image_to_window(game->mlx, game->win, player_img, game->x_p,
