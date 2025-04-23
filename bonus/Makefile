@@ -1,7 +1,7 @@
 GREEN=\033[0;32m
 NC=\033[0m
 
-NAME     = ../so_long
+NAME     = so_long
 
 CC       = cc
 CFLAGS   = -Wall -Wextra -Werror

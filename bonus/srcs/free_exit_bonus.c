@@ -6,7 +6,7 @@
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 11:11:13 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/26 11:53:41 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:56:17 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ void	cleanup(t_game *game)
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
 	if (game->e_data.img_enemy_l)
-		mlx_destroy_image(game->mlx, game->e_data.img_enemy_r);
-	if (game->e_data.img_enemy_r)
 		mlx_destroy_image(game->mlx, game->e_data.img_enemy_l);
+	if (game->e_data.img_enemy_r)
+		mlx_destroy_image(game->mlx, game->e_data.img_enemy_r);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	;
 	free_map(game->map);
 }

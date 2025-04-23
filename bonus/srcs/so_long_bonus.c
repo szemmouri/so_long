@@ -6,7 +6,7 @@
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:30:59 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/26 11:57:52 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:55:36 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	main(int argc, char **argv)
 	}
 	check_path(argv[1]);
 	game.map = get_map(argv[1]);
+	game.win = NULL;
 	if (game.map)
 	{
 		check_map(game.map);

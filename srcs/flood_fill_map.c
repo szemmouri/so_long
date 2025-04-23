@@ -6,7 +6,7 @@
 /*   By: szemmour <szemmour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:25:05 by szemmour          #+#    #+#             */
-/*   Updated: 2025/02/24 13:38:00 by szemmour         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:54:30 by szemmour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static int	flood_fill_map(char **map, int x, int y, t_map_data *map_d)
 		return (0);
 	if (map[y][x] == WALL || map[y][x] == 'v' || map[y][x] == EXIT)
 	{
-		map_d->exit_found = 1;
+		if (map[y][x] == EXIT)
+			map_d->exit_found = 1;
 		return (0);
 	}
 	if (map[y][x] == COLLECTIBLE)
